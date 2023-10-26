@@ -1,38 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./AddUser.module.css";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
 
+function AddUser(props) {
+  const [enteredUsername, setEnteredUsername] = useState("");
+  const [enteredAge, setEnteredAge] = useState("");
 
-function AddUser() {
   const addUserHandler = (event) => {
     event.preventDefault();
+    props.onAddUserHandler(enteredUsername);
+    console.log(enteredUsername, enteredAge);
   };
-  const onInputHandler = (id, value) => {
-    console.log(id, value);
+  const usernameHandler = (event) => {
+    setEnteredUsername(event.target.value);
+  };
+  const ageChangedHandler = (event) => {
+    setEnteredAge(event.target.value);
   };
   return (
     <Card className={classes.input}>
-      <form onSubmit={addUserHandler} class={classes["form-group"]}>
+      <form onSubmit={addUserHandler}>
         <label htmlFor="username">username</label>
         <input
           type="text"
           name=""
           id="username"
-          onChange={(event) => {
-            onInputHandler(event.target.id, event.target.value);
-          }}
+          onChange={usernameHandler}
         ></input>
         <label htmlFor="age">Age</label>
         <input
           type="number"
           name=""
           id="age"
-          onChange={(event) => {
-            onInputHandler(event.target.id, event.target.value);
-          }}
+          onChange={ageChangedHandler}
         ></input>
-        <Button type="button">Add User</Button>
+        <Button type="submit">Add User</Button>
       </form>
     </Card>
   );
