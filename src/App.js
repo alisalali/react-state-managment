@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import AddUser from "./components/Users/AddUser";
 import UsersList from "./components/UserList/UsersList";
+import { ErrorModel } from "./components/UI/ErrorModal";
 
 function App() {
   const [userList, setUserList] = useState([]);
@@ -17,8 +18,7 @@ function App() {
   return (
     <div className="app">
       <AddUser onAddUser={onAddUserHandler} />
-      {!userList && <p>No users added</p>}
-      {userList && <UsersList users={userList}></UsersList>}
+      <UsersList users={userList}></UsersList>
     </div>
   );
 }
