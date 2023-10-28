@@ -8,7 +8,6 @@ function AddUser(props) {
   const [enteredUsername, setEnteredUsername] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
   const [error, setError] = useState();
-  const [showModal, setShowModal] = useState(false);
 
   const addUserHandler = (event) => {
     event.preventDefault();
@@ -19,7 +18,6 @@ function AddUser(props) {
           message: "Please enter a valid name and age (non-empty values).",
         };
       });
-      setShowModal(true);
       return;
     }
     if (+enteredAge < 1) {
@@ -29,7 +27,6 @@ function AddUser(props) {
           message: "Please enter a valid age (> 0).",
         };
       });
-      setShowModal(true);
       return;
     }
     props.onAddUser(enteredUsername, enteredAge);
@@ -46,7 +43,7 @@ function AddUser(props) {
     setError(null);
   };
   return (
-    <div>
+    <>
       {error && (
         <ErrorModal
           title={error.title}
@@ -75,7 +72,7 @@ function AddUser(props) {
           <Button type="submit">Add User</Button>
         </form>
       </Card>
-    </div>
+    </>
   );
 }
 
