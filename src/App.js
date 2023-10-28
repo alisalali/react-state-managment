@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import AddUser from "./components/Users/AddUser";
 import UsersList from "./components/UserList/UsersList";
-import { ErrorModel } from "./components/UI/ErrorModal";
 
 function App() {
   const [userList, setUserList] = useState([]);
