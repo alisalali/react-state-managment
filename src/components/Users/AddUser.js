@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import classes from "./AddUser.module.css";
 import Card from "../UI/Card";
 import Button from "../UI/Button";
@@ -8,9 +8,13 @@ function AddUser(props) {
   const [enteredUsername, setEnteredUsername] = useState("");
   const [enteredAge, setEnteredAge] = useState("");
   const [error, setError] = useState();
+  // using useRef hook
+  const enteredUserInput = useRef();
+  const enteredAgeInput = useRef();
 
   const addUserHandler = (event) => {
     event.preventDefault();
+    console.log(enteredAgeInput.current.value); // access ref hook
     if (enteredUsername.trim().length === 0 || enteredAge.trim().length === 0) {
       setError(() => {
         return {
@@ -60,6 +64,7 @@ function AddUser(props) {
             id="username"
             value={enteredUsername}
             onChange={usernameHandler}
+            ref={enteredUserInput}
           ></input>
           <label htmlFor="age">Age</label>
           <input
@@ -68,6 +73,7 @@ function AddUser(props) {
             id="age"
             value={enteredAge}
             onChange={ageChangedHandler}
+            ref={enteredAgeInput}
           ></input>
           <Button type="submit">Add User</Button>
         </form>

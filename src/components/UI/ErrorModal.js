@@ -25,7 +25,6 @@ const ModalOverlay = (props) => {
 };
 
 export const ErrorModal = (props) => {
-  console.log(props);
   return (
     <React.Fragment>
       {ReactDOM.createPortal(
